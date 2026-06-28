@@ -210,12 +210,40 @@
 
   .divider { border: none; border-top: 0.5px solid var(--mid); margin: 1.25rem 0; }
 
-  .action-block { margin-bottom: 1.25rem; }
-  .action-label {
+  /* Pick 3 actions */
+  .pick3-section { margin-bottom: 1.25rem; }
+  .pick3-label {
     font-size: 10px; font-weight: 700; letter-spacing: .09em;
-    text-transform: uppercase; color: var(--taupe); margin-bottom: .6rem;
+    text-transform: uppercase; color: var(--taupe); margin-bottom: .5rem;
   }
-  .action-text { font-size: 14px; color: var(--text); line-height: 1.65; }
+  .pick3-instruction {
+    font-size: 13px; color: var(--muted); margin-bottom: .875rem; line-height: 1.5;
+  }
+  .action-item {
+    display: flex; align-items: flex-start; gap: .75rem;
+    background: var(--bg); border-radius: 10px; padding: .875rem 1rem;
+    margin-bottom: .5rem; cursor: pointer;
+    border: 1.5px solid transparent; transition: all .2s;
+  }
+  .action-item:hover { border-color: var(--orange); background: var(--orange-lt); }
+  .action-item.picked { border-color: var(--orange); background: var(--orange-lt); }
+  .action-checkbox {
+    width: 20px; height: 20px; border-radius: 50%;
+    border: 2px solid var(--mid); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    margin-top: 1px; transition: all .2s;
+  }
+  .action-item.picked .action-checkbox {
+    background: var(--orange); border-color: var(--orange); color: white;
+    font-size: 11px; font-weight: 700;
+  }
+  .action-text-pick { font-size: 13px; color: var(--text); line-height: 1.6; }
+  .action-item.picked .action-text-pick { color: var(--orange-dk); }
+  .pick3-counter {
+    font-size: 12px; color: var(--muted); text-align: center;
+    margin-top: .5rem; font-style: italic;
+  }
+  .pick3-counter.done { color: var(--orange); font-weight: 600; font-style: normal; }
 
   .clusters-section { margin-bottom: 1.25rem; }
   .clusters-label {
@@ -340,10 +368,15 @@
           </div>
         </div>
         <hr class="divider">
-        <div class="action-block">
-          <div class="action-label">Your action plan</div>
-          <div class="action-text" id="rAction"></div>
+
+        <!-- Pick 3 actions -->
+        <div class="pick3-section">
+          <div class="pick3-label">Your action plan — pick one and start</div>
+          <div class="pick3-instruction">These are moves that fit your style. Pick the one that feels most doable right now and commit to it this week.</div>
+          <div id="actionItems"></div>
+          <div class="pick3-counter" id="pick3Counter">Pick 1 to commit to</div>
         </div>
+
         <hr class="divider">
         <div class="clusters-section">
           <div class="clusters-label">Your scores across all four styles</div>
@@ -352,7 +385,7 @@
         <div class="worksheet-cta">
           <strong>Now map who's in your corner</strong>
           <p>Download the free Networking Strength Worksheet to put your results into action — see who's in your network and where the real gaps are.</p>
-          <a href="WORKSHEET_PDF_URL_HERE" class="btn-download" download>
+          <a href="https://smmicke77.github.io/werkitgirls-resources/werk_it_girls_network_mapping_1.pdf" class="btn-download" download>
             ↓ &nbsp;Download free worksheet
           </a>
         </div>
@@ -398,7 +431,13 @@ const profiles = {
     narrative: "You see relationships as a web, not a ladder. When two people in your life should know each other, you make it happen — and you do it generously.",
     superpower: "Creating value for others without keeping score. You're the person people think of when they say \"you have to meet so-and-so.\"",
     growth: "Slowing down to deepen the connections you already have, so your network has roots — not just reach.",
-    action: "This month, make three intentional introductions between people in your network who don't know each other yet. Then check in on one existing relationship you've let go quiet."
+    actions: [
+      "Make three intentional introductions between people in your network who don't know each other yet.",
+      "Reach out to one existing relationship you've let go quiet — no agenda, just reconnect.",
+      "When you make your next introduction, follow up a week later to see how it landed.",
+      "Identify one person in your network who could benefit from knowing someone outside your usual circles — and make it happen.",
+      "This week, share something useful with someone in your network: an article, an opportunity, a connection."
+    ]
   },
   cultivator: {
     name: "The Cultivator",
@@ -406,7 +445,13 @@ const profiles = {
     narrative: "You value depth over breadth. You're the person people trust and remember because you invest in relationships over time.",
     superpower: "Loyalty and authenticity. People don't just know you — they count on you.",
     growth: "Expanding your circle so that your influence reaches as far as your impact. The depth is there — now stretch the width.",
-    action: "Identify two people outside your current circle — a different industry, background, or function — and make one genuine outreach this month. No agenda, just curiosity."
+    actions: [
+      "Reach out to two people outside your current circle — a different industry, background, or function — with genuine curiosity, no agenda.",
+      "Schedule one coffee or call with someone you haven't connected with in over six months.",
+      "Send a follow-up to someone who helped you recently — a specific thank-you goes a long way.",
+      "Identify one professional community or event outside your usual orbit and show up this month.",
+      "Think of one person in your network you've been meaning to introduce to someone else — make that introduction this week."
+    ]
   },
   opportunitySeeker: {
     name: "The Opportunity Seeker",
@@ -414,7 +459,13 @@ const profiles = {
     narrative: "You network with purpose. You see every room, every event, every conversation as a chance to move forward — and you're not afraid to walk in first.",
     superpower: "Strategic visibility and initiative. You put yourself in rooms where things happen.",
     growth: "Making sure people experience your genuine curiosity, not just your agenda — so relationships outlast the opportunity that started them.",
-    action: "After your next event or meeting, identify the two most meaningful conversations you had and send a personal follow-up within 48 hours. Reference something specific you discussed."
+    actions: [
+      "After your next event or meeting, send a personal follow-up to the two most meaningful conversations — reference something specific you discussed.",
+      "Before your next networking event, set one clear intention: not \"make connections\" but one specific type of person you want to meet.",
+      "Being in the room with your head in your phone isn't being in the room. At your next event, put it away.",
+      "Identify one relationship that started as transactional — reach out this week with no ask, just to check in.",
+      "Ask someone in your network for their honest take on something you're working through. Lead with curiosity, not strategy."
+    ]
   },
   communityBuilder: {
     name: "The Community Builder",
@@ -422,7 +473,13 @@ const profiles = {
     narrative: "You thrive when people come together around something bigger than themselves. Teams, organizations, causes — you're the one who shows up, brings others along, and makes the group stronger.",
     superpower: "Creating belonging. People feel seen and included around you.",
     growth: "Investing in one-on-one relationships outside the group, so your network isn't tied to any single room or organization.",
-    action: "This month, reach out to one person from your network for a one-on-one conversation — no group context, just the two of you. Build the relationship independent of the community."
+    actions: [
+      "Reach out to one person from your network for a one-on-one conversation — no group context, just the two of you.",
+      "Identify someone in your community who tends to stay on the edges — and personally invite them into a conversation.",
+      "Think about your network beyond your current organizations. Reach out to one person from a different community this week.",
+      "Send a direct message to someone you admire in your field — not to ask for anything, just to tell them their work mattered to you.",
+      "Organize one small, low-pressure gathering — even two or three people — around something you care about."
+    ]
   }
 };
 
@@ -460,6 +517,8 @@ const clusterCoaching = {
 
 let current = 0;
 let answers = new Array(15).fill(null);
+let pickedActions = new Set();
+let autoAdvanceTimer = null;
 
 function startAssessment() {
   showScreen('screen-questions');
@@ -497,19 +556,29 @@ function renderQ() {
 }
 
 function selectOpt(score) {
+  // Clear any pending auto-advance
+  if (autoAdvanceTimer) clearTimeout(autoAdvanceTimer);
+
   answers[current] = score;
   document.querySelectorAll('.opt-btn').forEach((btn,i) => {
     btn.classList.toggle('selected', i+1 === score);
   });
   document.getElementById('btnNext').disabled = false;
+
+  // Auto-advance after short delay so selection is visible
+  autoAdvanceTimer = setTimeout(() => {
+    nextQ();
+  }, 420);
 }
 
 function nextQ() {
+  if (autoAdvanceTimer) clearTimeout(autoAdvanceTimer);
   if (answers[current] === null) return;
   if (current === 14) { showResults(); } else { current++; renderQ(); }
 }
 
 function prevQ() {
+  if (autoAdvanceTimer) clearTimeout(autoAdvanceTimer);
   if (current > 0) { current--; renderQ(); }
 }
 
@@ -529,7 +598,22 @@ function showResults() {
   document.getElementById('rNarrative').textContent = p.narrative;
   document.getElementById('rSuperpower').textContent = p.superpower;
   document.getElementById('rGrowth').textContent = p.growth;
-  document.getElementById('rAction').textContent = p.action;
+
+  // Render pick-1 actions
+  pickedActions = new Set();
+  const actionWrap = document.getElementById('actionItems');
+  actionWrap.innerHTML = '';
+  p.actions.forEach((action, idx) => {
+    const div = document.createElement('div');
+    div.className = 'action-item';
+    div.innerHTML = `
+      <div class="action-checkbox" id="cb-${idx}"></div>
+      <div class="action-text-pick">${action}</div>
+    `;
+    div.onclick = () => toggleAction(idx, div, p.actions.length);
+    actionWrap.appendChild(div);
+  });
+  updatePick3Counter();
 
   const barsWrap = document.getElementById('clusterBars');
   barsWrap.innerHTML = '';
@@ -555,6 +639,36 @@ function showResults() {
   showScreen('screen-results');
 }
 
+function toggleAction(idx, el, total) {
+  if (pickedActions.has(idx)) {
+    pickedActions.delete(idx);
+    el.classList.remove('picked');
+    document.getElementById('cb-' + idx).textContent = '';
+  } else {
+    // Only allow 1 pick at a time — deselect any previous
+    pickedActions.forEach(prev => {
+      document.querySelectorAll('.action-item')[prev].classList.remove('picked');
+      document.getElementById('cb-' + prev).textContent = '';
+    });
+    pickedActions.clear();
+    pickedActions.add(idx);
+    el.classList.add('picked');
+    document.getElementById('cb-' + idx).textContent = '✓';
+  }
+  updatePick3Counter();
+}
+
+function updatePick3Counter() {
+  const counter = document.getElementById('pick3Counter');
+  if (pickedActions.size === 1) {
+    counter.textContent = "You've got your move. Now go do it.";
+    counter.classList.add('done');
+  } else {
+    counter.textContent = 'Pick 1 to commit to';
+    counter.classList.remove('done');
+  }
+}
+
 function getCoaching(type, score) {
   const c = clusterCoaching[type];
   if (score >= 20) return c.high;
@@ -563,8 +677,10 @@ function getCoaching(type, score) {
 }
 
 function retake() {
+  if (autoAdvanceTimer) clearTimeout(autoAdvanceTimer);
   current = 0;
   answers = new Array(15).fill(null);
+  pickedActions = new Set();
   document.getElementById('progressFill').style.width = '0%';
   document.getElementById('progressText').textContent = '0 of 15 answered';
   startAssessment();
