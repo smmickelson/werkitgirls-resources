@@ -660,7 +660,7 @@ function showResults() {
   const winner = Object.keys(totals).reduce((a,b) => totals[a] > totals[b] ? a : b);
   const p = profiles[winner];
 
-  const overall = Object.values(totals).reduce((a,b) => a+b, 0);
+  const overall = answers.reduce((sum, a) => sum + (a || 0), 0);
   document.getElementById('overallScore').textContent = 'Your overall score: ' + overall + ' / 60';
 
   document.getElementById('rName').textContent = p.name;
