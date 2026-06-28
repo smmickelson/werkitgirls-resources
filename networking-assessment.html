@@ -355,7 +355,10 @@
         <div class="result-tagline" id="rTagline"></div>
         <div class="result-narrative" id="rNarrative"></div>
       </div>
-      <div class="no-best-result">There is no "best" networking style. The most effective networkers understand their natural strengths and intentionally stretch beyond them.</div>
+      <div class="no-best-result">
+        <div id="overallScore" style="font-size:18px; font-weight:700; margin-bottom:.35rem; font-style:normal;"></div>
+        There is no "best" networking style. The most effective networkers understand their natural strengths and intentionally stretch beyond them.
+      </div>
       <div class="result-body">
         <div class="strengths-growth">
           <div class="sg-block">
@@ -592,6 +595,9 @@ function showResults() {
 
   const winner = Object.keys(totals).reduce((a,b) => totals[a] > totals[b] ? a : b);
   const p = profiles[winner];
+
+  const overall = Object.values(totals).reduce((a,b) => a+b, 0);
+  document.getElementById('overallScore').textContent = 'Your overall score: ' + overall + ' / 60';
 
   document.getElementById('rName').textContent = p.name;
   document.getElementById('rTagline').textContent = p.tagline;
