@@ -1,0 +1,1 @@
+Your network may be wider than it feels — it's likely gone quiet from lack of upkeep, not lack of value. A single low-effort touchpoint, a short note, a share of something relevant, restarts a relationship faster than most people expect.
