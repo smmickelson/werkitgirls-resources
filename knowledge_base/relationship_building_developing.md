@@ -1,0 +1,1 @@
+Building relationships can feel like a performance you weren't given the script for. Connection isn't about charisma — it's about curiosity. Start smaller than you think you need to: one thoughtful follow-up question in a single conversation this week moves the needle more than a stack of new contacts ever will.
