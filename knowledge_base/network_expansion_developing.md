@@ -1,0 +1,1 @@
+Staying within a familiar circle feels safer, but it quietly limits the opportunities that reach you. Expansion doesn't require reinventing yourself — it requires one deliberate step outside your usual rooms per month.
