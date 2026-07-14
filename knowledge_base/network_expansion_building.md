@@ -1,0 +1,1 @@
+You've started stepping outside familiar circles, which takes real intention. Keep going — the payoff from expansion usually shows up months later, not immediately, so don't mistake a quiet stretch for a stalled one.
