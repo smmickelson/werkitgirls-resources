@@ -1,0 +1,1 @@
+You're forming real connections, even if it doesn't always feel effortless yet. The habits are there — you notice people, you follow through sometimes. The growth edge now is consistency: turning "sometimes" into "every time" is what separates a good networker from a great one.
