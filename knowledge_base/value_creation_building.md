@@ -1,0 +1,1 @@
+You give more than you realize, even if it doesn't feel systematic yet. The next step is visibility — not bragging, but making sure the people you've helped know it came from you, so the goodwill compounds.
