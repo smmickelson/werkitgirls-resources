@@ -1,0 +1,1 @@
+You give before you ask — introductions, insight, recognition — and that generosity is what makes people want to reciprocate. Your network trusts you because you've made yourself useful without expecting anything back. Keep tracking who you've helped; it's easy to lose sight of your own impact.
