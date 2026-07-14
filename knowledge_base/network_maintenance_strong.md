@@ -1,0 +1,1 @@
+You're the person who remembers the follow-up, the "how did that thing go?" That consistency is rare, and it's why your network stays warm instead of going cold. Protect this habit — it's easy to let slip when you get busy, and it's the hardest thing to rebuild.
