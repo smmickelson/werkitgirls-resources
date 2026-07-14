@@ -1,0 +1,1 @@
+You build genuine connections easily — people remember you not for working the room, but for the one conversation that actually mattered. That instinct toward warmth over transaction is a professional asset few people can fake. Your edge now isn't building more relationships — it's making sure the ones you have don't quietly go dormant.
