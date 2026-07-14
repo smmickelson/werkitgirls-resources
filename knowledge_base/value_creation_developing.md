@@ -1,0 +1,1 @@
+It can feel like you have nothing to offer until someone senior — but everyone has something valuable: an introduction, a piece of information, a genuine word of encouragement. Small, consistent generosity builds trust faster than grand gestures.
