@@ -1,0 +1,1 @@
+You're comfortable stepping into new rooms and unfamiliar territory to grow your circle. That instinct to expand is what keeps opportunities coming from unexpected places. The risk to watch for is breadth without depth — new contacts that never mature into real relationships.
