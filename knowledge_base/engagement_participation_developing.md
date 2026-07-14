@@ -1,0 +1,1 @@
+Showing up consistently is often the hardest part, not the least important. You don't need to attend everything — you need one recurring room where people expect to see you. Reliability builds a reputation faster than volume does.
