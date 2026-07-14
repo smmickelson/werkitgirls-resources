@@ -1,0 +1,1 @@
+You show up — in rooms, in conversations, in the moments that matter. That visibility compounds over time into a reputation you don't have to explain. Your edge now is being selective: not every room deserves your energy.
