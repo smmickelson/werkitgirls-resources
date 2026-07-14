@@ -1,0 +1,1 @@
+You maintain some relationships well, but it's likely inconsistent — strong with a few people, silent with many more. A simple system, even a quarterly reminder to check in, closes that gap without adding real effort to your week.
