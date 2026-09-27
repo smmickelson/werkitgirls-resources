@@ -27,3 +27,5 @@ are logged here, newest first.
     correctly against the underlying formulas on a clean, slow retake before
     this fix; confirmed the accumulation bug specifically by retaking twice in
     a row without reloading.
+      - Verified live at tools.werkitgirls.com after deployment: fast retakes and
+    repeated no-reload retakes both produce correct, non-duplicated results.
