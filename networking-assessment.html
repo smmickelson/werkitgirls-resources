@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -134,6 +135,7 @@
   }
   .opt-btn:hover { border-color: var(--orange); background: var(--orange-lt); }
   .opt-btn.selected { border-color: var(--orange); background: var(--orange-lt); }
+  .opt-btn.locked { pointer-events: none; opacity: .85; }
   .opt-num {
     font-size: 18px; font-weight: 700; color: var(--navy); line-height: 1;
     transition: color .2s;
@@ -210,7 +212,7 @@
 
   .divider { border: none; border-top: 0.5px solid var(--mid); margin: 1.25rem 0; }
 
-  /* Pick 3 actions */
+  /* Pick 1 action */
   .pick3-section { margin-bottom: 1.25rem; }
   .pick3-label {
     font-size: 10px; font-weight: 700; letter-spacing: .09em;
@@ -372,7 +374,7 @@
         </div>
         <hr class="divider">
 
-        <!-- Pick 3 actions -->
+        <!-- Pick 1 action -->
         <div class="pick3-section">
           <div class="pick3-label">Your action plan — pick one and start</div>
           <div class="pick3-instruction">These are moves that fit your style. Pick the one that feels most doable right now and commit to it this week.</div>
@@ -632,6 +634,11 @@ function selectOpt(score) {
   });
   document.getElementById('btnNext').disabled = false;
 
+  // Belt-and-suspenders: briefly lock the option buttons so a stray double-click
+  // during the auto-advance window can't register a second, different answer
+  // for this same question before it advances.
+  document.querySelectorAll('.opt-btn').forEach(btn => btn.classList.add('locked'));
+
   // Auto-advance after short delay so selection is visible
   autoAdvanceTimer = setTimeout(() => {
     nextQ();
@@ -677,6 +684,7 @@ function showResults() {
   else actionTier = p.actions.low;
   pickedActions = new Set();
   const actionWrap = document.getElementById('actionItems');
+  actionWrap.innerHTML = '';   // FIX: clear any items left over from a prior showResults() call
   actionTier.forEach((action, idx) => {
     const div = document.createElement('div');
     div.className = 'action-item';
